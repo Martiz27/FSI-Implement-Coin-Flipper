@@ -1,10 +1,62 @@
+
 // TODO: Declare any global variables we need
+function displayHeadTails(x, y, z) {
+    let display = document.getElementById(x)
+    display.innerHTML = (y ) + z
+
+}
 
 
-document.addEventListener('DOMContentLoaded', function () {
     // This is just a sanity check to make sure your JavaScript script is getting loaded
     // You can remove it once you see it in your browser console in the developer tools
-    console.log('Hi')
+    let pennyImage = document.querySelector("#penny-image")
+    let flipBtn = document.querySelector("#flip")
+    let numHeads = 0
+    let numTails = 0
+    let clearScore = document.querySelector("#clear")
+
+
+    flipBtn.addEventListener("click", function(){
+        let heads = Math.random() < 0.5
+        if(heads) {
+            document.getElementById('penny-image').src = 'assets/images/penny-heads.jpg'
+            document.getElementById('message').textContent = 'You Flipped Heads!'
+            numHeads +=1
+            displayHeadTails("heads", numHeads, null)
+            
+        } else {
+            document.getElementById('penny-image').src = 'assets/images/penny-tails.jpg'
+            document.getElementById('message').textContent = 'You Flipped Tails'
+            numTails +=1
+            displayHeadTails("tails", numTails, null)
+        }
+        let totalFlips = numHeads + numTails
+        let tailPercent = (numTails / totalFlips) * 100
+        let headPercent = (numHeads / totalFlips) * 100
+        displayHeadTails("heads-percent", headPercent, "%")
+        displayHeadTails("tails-percent", tailPercent, "%")
+
+       return numHeads
+       return tailPercent
+       return numTails
+       return headPercent
+    })
+
+    clearScore.addEventListener("click", function(){
+        numHeads = 0
+        numTails = 0
+        tailPercent = 0
+        headPercent = 0
+        displayHeadTails("heads-percent", headPercent, "%")
+        displayHeadTails("tails-percent", tailPercent, "%")
+        displayHeadTails("heads", numHeads, null)
+        displayHeadTails("tails", numTails, null)
+    })
+
+    
+            
+
+
 
     // TODO: Add event listener and handler for flip and clear buttons
 
@@ -24,4 +76,4 @@ document.addEventListener('DOMContentLoaded', function () {
         // TODO: Reset global variables to 0
         // TODO: Update the scoreboard (same logic as in flip button click handler)
 
-})
+
